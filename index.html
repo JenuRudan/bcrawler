@@ -1,0 +1,50 @@
+<html style="font-family: 'Muli', sans-serif;">
+<title>bCrawler</title>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+
+</head>
+<style>
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {   
+border-color: rgba(255, 0, 04, 0.8);
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255, 0, 0 , 0.6);
+outline: 0 none;}
+</style>
+<body style="background-color:#2b2b2b">
+
+<div class="text-center" style="margin-top:2%"><img src="c.png"><div  class="text-center" style="color:white;font-size: 50px;background-color: red;align-content: center">bCrawler</div></div>
+
+<div class="col-md-6 offset-md-3" style="margin-top:2%;">
+    <form class="form-inline text-center">
+    <input type="text" id="searchinput" data-provide="typeahead" autocomplete="off" style="width: 100%;font-family: 'Muli', sans-serif;font-size: 30px" class="form-control typeahead" placeholder="start typing">
+
+    <!-- <a class="btn btn-success btn-default" style="margin-top:2%;">View DB Data</a> -->
+</form>    
+</div>
+
+
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="js/bootstrap3-typeahead.min.js"></script>
+<script>
+    $("#searchinput").typeahead({ source: function(query, process) {
+        return $.ajax({
+            url: '../_lib/search.php',
+            type: 'get',
+            data: {query: query},
+            dataType: 'json',
+            success: function(json) {
+                return process(json);
+            }
+        });
+    }});
+    
+</script>
+</html>
